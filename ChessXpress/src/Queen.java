@@ -1,22 +1,22 @@
 
 public class Queen extends Piece {
 	PieceType type;
-	public Queen(boolean inPlay, int x, int y) {
-		super(inPlay, x, y);
+	public Queen(boolean inPlay, int x, int y, int player) {
+		super(inPlay, x, y, player);
 	}
 	
 	@Override
-	public boolean isValid(Board board, int currX, int currY, int destX, int destY) {
-		if(super.isValid(board, currX, currY, destX, destY) == false)
+	public boolean isValid(Board board, int destX, int destY) {
+		if(super.isValid(board, destX, destY) == false)
 			return false;
 		//Queens move in any direction 
-		if(destX == currX)
+		if(destX == this.getX())
 			return true;
 		
-		if(destY == currY)
+		if(destY == this.getY())
 			return true;
 		
-		if(destX - currX == destY - currY)
+		if(destX - this.getX() == destY - this.getY())
 			return true;
 		
 		return false;		

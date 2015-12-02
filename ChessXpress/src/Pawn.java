@@ -1,22 +1,23 @@
 
 public class Pawn extends Piece {
 	PieceType type;
-	public Pawn(boolean inPlay, boolean hasMoved, int x, int y) {
-		super(inPlay, hasMoved, x, y);
+	public Pawn(boolean inPlay, int x, int y, int player) {
+		super(inPlay, x, y, player);
 	}
 	
 	@Override
-	public boolean isValid(Board board, int currX, int currY, int destX, int destY, boolean hasMoved) {
-		if(super.isValid(board, currX, currY, destX, destY) == false)
+	public boolean isValid(Board board, int destX, int destY) {
+		if(super.isValid(board, destX, destY) == false)
 			return false;
 		//Pawns move forward by one, but can move forward by two on first move and attack diagonally
-		if(destX == currX && destY == currY+1){
-			if(hasMoved != true)
+		//Pawns can't jump over occupied spaces or capture on first move
+		if(destX == this.getX() && destY == this.getY()+1){
+			if(this.getY() != 1 || this.getY() != 6)
 				hasMoved = true;
 			return true;
 		}
 		if(hasMoved != true){
-			if(if destC == currX && destY == currY+2){
+			if(if destX == this.getX() && destY == this.getY()+2){
 				hasMoved = true;
 				return true;
 			}

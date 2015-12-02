@@ -3,11 +3,13 @@ public class Piece {
 	private int x;
 	private int y;
 	private boolean inPlay;
+	private int player;
 	
-	public Piece(boolean inPlay, int x, int y) {
+	public Piece(boolean inPlay, int x, int y, int player) {
 		this.inPlay = inPlay;		
 		this.x = x;
 		this.y = y;
+		this.player = player;
 	}
 
 	public boolean isInPlay() {
@@ -28,13 +30,16 @@ public class Piece {
     public void setY(int y) {
         this.y = y;
     }
+    public int getPlayer() {
+    	return this.player;
+    }
     
-	public boolean isValid(Board board, int currX, int currY, int destX, int destY) {
-		if(destX == currX && destY == currY)
+	public boolean isValid(Board board, int destX, int destY) {
+		if(destX == this.x && destY == this.y)
 			return false;
-		if(currX < 0 || currX > 7)
+		if(this.x < 0 || this.x > 7)
 			return false;
-		if(currY < 0 || currY > 7)
+		if(this.y < 0 || this.y > 7)
 			return false;
 		if(destX < 0 || destX > 7)
 			return false;
