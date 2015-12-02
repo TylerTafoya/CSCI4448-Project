@@ -18,15 +18,18 @@ public class King extends Piece {
 			return true;
 		if(destX == currX-1 && destY == currY-1)
 			return true;
-		if(destX == currX+1 && destY == currY+1)
+		if(destX == currX+1 && destY == currY)
 			return true;
-		if(destX == currX+1 && destY == currY-1)
+		if(destX == currX-1 && destY == currY)
 			return true;
-		if(destX == currX-1 && destY == currY+1)
+		if(destX == currX && destY == currY+1)
 			return true;
-		if(destX == currX-1 && destY == currY-1)
+		if(destX == currX && destY == currY-1)
 			return true;
 		
+
+
+
 		return false;
 		
 	}
