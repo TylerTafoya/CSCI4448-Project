@@ -1,8 +1,8 @@
 
 public class Knight extends Piece {
 	PieceType type;
-	public Knight(int x, int y) {
-		super(x, y);
+	public Knight(boolean inPlay, int x, int y) {
+		super(inPlay, x, y);
 	}
 	
 	@Override

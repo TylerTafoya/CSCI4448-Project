@@ -2,13 +2,33 @@
 public class Piece {
 	private int x;
 	private int y;
+	private boolean inPlay;
 	
-	public Piece(int x, int y) {
-		super();
+	public Piece(boolean inPlay, int x, int y) {
+		this.inPlay = inPlay;		
 		this.x = x;
 		this.y = y;
 	}
 
+	public boolean isInPlay() {
+        return inPlay;
+    }
+    public void setInPlay(boolean inPlay) {
+        this.inPlay = inPlay;
+    }
+    public int getX() {
+        return x;
+    }
+    public void setX(int x) {
+        this.x = x;
+    }
+    public int getY() {
+        return y;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
+    
 	public boolean isValid(Board board, int currX, int currY, int destX, int destY) {
 		if(destX == currX && destY == currY)
 			return false;
@@ -20,7 +40,7 @@ public class Piece {
 			return false;
 		if(destY < 0 || destY > 7)
 			return false;
-		//TODO add a check if space is already occupied
+
 		return true;
 	}
 

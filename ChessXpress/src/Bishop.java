@@ -1,8 +1,8 @@
 
 public class Bishop extends Piece {
 	PieceType type;
-	public Bishop(int x, int y){
-		super(x,y);
+	public Bishop(boolean inPlay, int x, int y) {
+		super(inPlay, x, y);
 	}
 	
 	@Override

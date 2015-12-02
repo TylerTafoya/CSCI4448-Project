@@ -1,8 +1,8 @@
 
 public class Rook extends Piece {
 	PieceType type;
-	public Rook(int x, int y) {
-		super(x, y);
+	public Rook(boolean inPlay, int x, int y) {
+		super(inPlay, x, y);
 	}
 	
 	@Override

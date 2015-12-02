@@ -1,8 +1,8 @@
 
 public class Queen extends Piece {
 	PieceType type;
-	public Queen(int x, int y) {
-		super(x, y);
+	public Queen(boolean inPlay, int x, int y) {
+		super(inPlay, x, y);
 	}
 	
 	@Override
