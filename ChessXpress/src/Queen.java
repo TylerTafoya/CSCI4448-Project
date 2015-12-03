@@ -3,6 +3,7 @@ public class Queen extends Piece {
 	PieceType type;
 	public Queen(boolean inPlay, int x, int y, int player) {
 		super(inPlay, x, y, player);
+		type = PieceType.QUEEN;
 	}
 	
 	@Override

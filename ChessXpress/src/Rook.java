@@ -3,6 +3,7 @@ public class Rook extends Piece {
 	PieceType type;
 	public Rook(boolean inPlay, int x, int y, int player) {
 		super(inPlay, x, y, player);
+		type = PieceType.ROOK;
 	}
 	
 	@Override

@@ -3,6 +3,7 @@ public class Bishop extends Piece {
 	PieceType type;
 	public Bishop(boolean inPlay, int x, int y, int player) {
 		super(inPlay, x, y, player);
+		type = PieceType.BISHOP;
 	}
 	
 	@Override
