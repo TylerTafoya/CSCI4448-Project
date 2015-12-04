@@ -22,6 +22,8 @@ public class Board extends Applet {
           Image whiteCastleHL   = getImage(getCodeBase(), "wtcasHi.gif");
           Image whiteKingReg   = getImage(getCodeBase(), "wtking.gif");
           Image whiteKingHL   = getImage(getCodeBase(), "wtkingHi.gif");
+          Image whiteQueenReg   = getImage(getCodeBase(), "wtque.gif");
+          Image whiteQueenHL   = getImage(getCodeBase(), "wtkqueHi.gif");
           //black
           Image blackBishopReg   = getImage(getCodeBase(), "bkbsh.gif");
           Image blackBishopHL   = getImage(getCodeBase(), "bkbshHi.gif");
@@ -29,6 +31,8 @@ public class Board extends Applet {
           Image blackCastleHL   = getImage(getCodeBase(), "bkcasHi.gif");
           Image blackKingReg   = getImage(getCodeBase(), "bkking.gif");
           Image blackKingHL   = getImage(getCodeBase(), "bkkingHi.gif");
+          Image blackQueenReg   = getImage(getCodeBase(), "bkque.gif");
+          Image blackQueenHL   = getImage(getCodeBase(), "bkqueHi.gif");
           
           for ( row = 0;  row < 8;  row++ ) {
         	  y = row * 40;
@@ -50,12 +54,14 @@ public class Board extends Applet {
           g.drawImage(whiteCastleReg, 0, 280, this);
           g.drawImage(whiteCastleReg, 280, 280, this);
           g.drawImage(whiteKingReg, 160, 280, this);
+          g.drawImage(whiteQueenReg, 120, 280, this);
           
           g.drawImage(blackBishopReg, 80, 0, this);
           g.drawImage(blackBishopReg, 200, 0, this);
           g.drawImage(blackCastleReg, 0, 0, this);
           g.drawImage(blackCastleReg, 280, 0, this);
           g.drawImage(blackKingReg, 160, 0, this);
+          g.drawImage(blackQueenReg, 120, 0, this);
           
           
        }
