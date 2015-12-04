@@ -39,7 +39,7 @@ public class Piece {
     	return this.type;
     }
     
-	public boolean isValid(Board board, int destX, int destY) {
+	public boolean isValid(Piece[][] board, int destX, int destY) {
 		if(destX == this.x && destY == this.y)
 			return false;
 		if(this.x < 0 || this.x > 7)

@@ -1,4 +1,4 @@
 
 public enum PieceType {
-	BISHOP, KING, KNIGHT, PAWN, ROOK, QUEEN;
+	BISHOP, KING, KNIGHT, PAWN, ROOK, QUEEN, BLANK;
 }
