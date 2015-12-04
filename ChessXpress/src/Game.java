@@ -54,26 +54,75 @@ public class Game{
 		//Create king for player2
 		gameBoard[7][4] = new King(7,4, 1);
 		
-		
-		
-		//Find player 1s king
-		Piece player1King;
-		for (int i=0; i<16; i++) {
-			for (int j=0; j<16; j++) {
-				if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 0)) {
-					player1King = gameBoard[i][j];
+		//Main game loop
+		boolean done = false;
+		//Which players turn it is. 0 is player 1, 1 is player 2
+		int turn = 0;
+		//Check if player 1 is in check. 0 not check, 1 in check, 2 checkmate
+		int check1 = 0;
+		//Check if player 2 is in check. 0 not check, 1 in check, 2 checkmate
+		int check2 = 0;
+		while (!done) {
+			//Check for check and checkmate
+			//Check for player 1
+			//Find player 1s king
+			Piece player1King;
+			for (int i=0; i<16; i++) {
+				for (int j=0; j<16; j++) {
+					if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 0)) {
+						player1King = gameBoard[i][j];
+					}
 				}
 			}
-		}
-		//Find player 2s king
-		Piece player2King;
-		for (int i=0; i<16; i++) {
-			for (int j=0; j<16; j++) {
-				if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 1)) {
-					player2King = gameBoard[i][j];
+			//Check for check
+			if (isCheck(player1King, gameBoard)) {
+				//Check for checkmate
+				if (isCheckmate(player1King, gameBoard)) {
+					check1 = 2;
+				}
+				//Otherwise just check
+				else {
+					check1 = 1;
 				}
 			}
+			//Otherwise not in check
+			else {
+				check1 = 0;
+			}
+			//Check for player 2
+			//Find player 2s king
+			Piece player2King;
+			for (int i=0; i<16; i++) {
+				for (int j=0; j<16; j++) {
+					if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 1)) {
+						player2King = gameBoard[i][j];
+					}
+				}
+			}
+			//Check for check
+			if (isCheck(player2King, gameBoard)) {
+				//Check for checkmate
+				if (isCheckmate(player2King, gameBoard)) {
+					check2 = 2;
+				}
+				//Otherwise just check
+				else {
+					check2 = 1;
+				}
+			}
+			//Otherwise not in check
+			else {
+				check2 = 0;
+			}
+			//Call move, get new board
+			gameBoard = move(gameBoard,turn,check1,check2);
+			//Switch which players turn it is
+			turn = 1-turn;
+			//Redisplay
 		}
+		
+		
+		
 		//Test isCheck
 
 	}
