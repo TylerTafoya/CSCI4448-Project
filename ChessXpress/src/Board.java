@@ -42,14 +42,15 @@ public class Board extends Applet {
           Image blackQueenReg   = getImage(getCodeBase(), "bkque.gif");
           Image blackQueenHL   = getImage(getCodeBase(), "bkqueHi.gif");
           
+          final int SQUARE_SIZE = 40;
+          
           //draw board squares
           for ( row = 0;  row < 8;  row++ ) {
-        	  y = row * 40;
+        	  y = row * SQUARE_SIZE;
              for ( col = 0;  col < 8;  col++) {
-                x = col * 40;
+                x = col * SQUARE_SIZE;
                 if ( (row % 2) == (col % 2) ){
                 	g.drawImage(wtsqu, x, y, this);
-                    //g.setColor(new Color(0xf0f0e0));
                 }
                 else{
                 	g.drawImage(bksqu, x, y, this);
@@ -57,6 +58,11 @@ public class Board extends Applet {
              }
           }
           //drawing default piece positions
+          /*
+           * will need to take in position of piece assigned to it and
+           *	multiply by square size
+           */
+          
           g.drawImage(whitePawnReg, 0, 240, this);
           g.drawImage(whitePawnReg, 40, 240, this);
           g.drawImage(whitePawnReg, 80, 240, this);
