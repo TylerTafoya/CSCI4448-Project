@@ -91,12 +91,15 @@ public class Game{
 		//Iterate through whole game board and build list of opponents pieces
 		for (int i=0; i<16; i++){
 			for (int j=0; j<16; j++) {
-				opponent.add(board[i][j]);
+				//Check if piece is opponents
+				if (board[i][j].getPlayer() == 1-kingPlayer){
+					opponent.add(board[i][j]);
+				}
 			}
 		}
 		for (int i=0; i<opponent.size(); i++){
 			//If piece can attack the king, is in check, return true
-			if (opponent[i].isValid(kingX,kingY)){
+			if (opponent.get(i).isValid(board,kingX,kingY)){
 				return true;
 			}
 		}
