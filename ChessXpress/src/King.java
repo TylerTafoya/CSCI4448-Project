@@ -1,9 +1,7 @@
 
 public class King extends Piece {
-	PieceType type;
 	public King(boolean inPlay, int x, int y, int player) {
-		super(inPlay, x, y, player);
-		type = PieceType.KING;
+		super(inPlay, x, y, player, PieceType.KING);
 	}
 	
 	@Override

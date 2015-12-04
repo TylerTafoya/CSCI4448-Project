@@ -4,12 +4,14 @@ public class Piece {
 	private int y;
 	private boolean inPlay;
 	private int player;
+	private PieceType type;
 	
-	public Piece(boolean inPlay, int x, int y, int player) {
+	public Piece(boolean inPlay, int x, int y, int player, PieceType type) {
 		this.inPlay = inPlay;		
 		this.x = x;
 		this.y = y;
 		this.player = player;
+		this.type = type;
 	}
 
 	public boolean isInPlay() {
@@ -32,6 +34,9 @@ public class Piece {
     }
     public int getPlayer() {
     	return this.player;
+    }
+    public PieceType getType() {
+    	return this.type;
     }
     
 	public boolean isValid(Board board, int destX, int destY) {
