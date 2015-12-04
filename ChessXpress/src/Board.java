@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.applet.*;
+import java.awt.event.MouseListener;
 import java.awt.image.*;
-import java.awt.image.BufferedImage;
 
 public class Board extends Applet {
     
@@ -53,10 +53,5 @@ public class Board extends Applet {
           
           
        }
-       
-       
-       
-       
-       
-       
+ 
     }
