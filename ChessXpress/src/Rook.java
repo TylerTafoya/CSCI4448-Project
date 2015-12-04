@@ -11,7 +11,7 @@ public class Rook extends Piece {
 			return false;
 		//Rooks move horizontal or vertical
 		//Check vertical case
-		if(destX == this.getX())
+		if(destX == this.getX()) {
 			//Destination is above the piece
 			if (destX < this.getX()) {
 				//Iterate backwards towards destination
@@ -19,7 +19,7 @@ public class Rook extends Piece {
 					//Check if the spot is your destination
 					if (i == destX) {
 						//Return false if it is your own piece, otherwise true
-						if (board[i][this.getY()].getPlayer() == (1-this.getPlayer())) {
+						if (board[i][this.getY()].getPlayer() == this.getPlayer()) {
 							return false;
 						}
 						//Otherwise it's valid
@@ -36,6 +36,7 @@ public class Rook extends Piece {
 					}
 				}
 			}
+		}
 			//Destination is below the piece
 			else {
 				//Iterate forwards towards destination
@@ -43,7 +44,7 @@ public class Rook extends Piece {
 					//Check if the spot is your destination
 					if (i == destX) {
 						//Return false if it is your own piece, otherwise true
-						if (board[i][this.getY()].getPlayer() == (1-this.getPlayer())) {
+						if (board[i][this.getY()].getPlayer() == this.getPlayer()) {
 							return false;
 						}
 						//Otherwise it's valid
@@ -61,7 +62,7 @@ public class Rook extends Piece {
 				}
 		}
 		//Horizontal case
-		if(destY == this.getY())
+		if(destY == this.getY()) {
 			//Destination is to the left of the piece
 			if (destY < this.getY()) {
 				//Iterate backwards towards destination
@@ -69,7 +70,7 @@ public class Rook extends Piece {
 					//Check if the spot is your destination
 					if (i == destY) {
 						//Return false if it is your own piece, otherwise true
-						if (board[this.getX()][i].getPlayer() == (1-this.getPlayer())) {
+						if (board[this.getX()][i].getPlayer() == this.getPlayer()) {
 							return false;
 						}
 						//Otherwise it's valid
@@ -86,6 +87,7 @@ public class Rook extends Piece {
 					}
 				}
 			}
+		}
 			//Destination is to the right of the piece
 			else {
 				//Iterate towards destination
@@ -93,7 +95,7 @@ public class Rook extends Piece {
 					//Check if the spot is your destination
 					if (i == destY) {
 						//Return false if it is your own piece, otherwise true
-						if (board[this.getX()][i].getPlayer() == (1-this.getPlayer())) {
+						if (board[this.getX()][i].getPlayer() == this.getPlayer()) {
 							return false;
 						}
 						//Otherwise it's valid
