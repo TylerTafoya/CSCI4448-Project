@@ -8,26 +8,20 @@ public class King extends Piece {
 	public boolean isValid(Piece[][] board, int destX, int destY) {
 		if(super.isValid(board, destX, destY) == false)
 			return false;
-		//Kings move in any direction by 1
-		if(destX == this.getX()+1 && destY == this.getY()+1)
-			return true;
-		if(destX == this.getX()+1 && destY == this.getY()-1)
-			return true;
-		if(destX == this.getX()-1 && destY == this.getY()+1)
-			return true;
-		if(destX == this.getX()-1 && destY == this.getY()-1)
-			return true;
-		if(destX == this.getX()+1 && destY == this.getY())
-			return true;
-		if(destX == this.getX()-1 && destY == this.getY())
-			return true;
-		if(destX == this.getX() && destY == this.getY()+1)
-			return true;
-		if(destX == this.getX() && destY == this.getY()-1)
-			return true;
-
-		return false;
-		
+		//Can't move further than one
+		if ((Math.abs(this.getX()-destX) < 2) && (Math.abs(this.getY()-destY) < 2)) {
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise piece is within 1 and opponent or blank
+			else {
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
 	}
 
 }

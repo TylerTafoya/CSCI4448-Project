@@ -10,21 +10,77 @@ public class Knight extends Piece {
 			return false;
 		//Knights move in an "L"
 		if(destX == this.getX()+2 && destY == this.getY()+1)
-			return true;
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise destination is opponent or blank
+			else {
+				return true;
+			}
 		if(destX == this.getX()+2 && destY == this.getY()-1)
-			return true;
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise destination is opponent or blank
+			else {
+				return true;
+			}
 		if(destX == this.getX()-2 && destY == this.getY()+1)
-			return true;
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise destination is opponent or blank
+			else {
+				return true;
+			}
 		if(destX == this.getX()-2 && destY == this.getY()-1)
-			return true;
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise destination is opponent or blank
+			else {
+				return true;
+			}
 		if(destX == this.getX()+1 && destY == this.getY()+2)
-			return true;
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise destination is opponent or blank
+			else {
+				return true;
+			}
 		if(destX == this.getX()+1 && destY == this.getY()-2)
-			return true;
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise destination is opponent or blank
+			else {
+				return true;
+			}
 		if(destX == this.getX()-1 && destY == this.getY()+2)
-			return true;
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise destination is opponent or blank
+			else {
+				return true;
+			}
 		if(destX == this.getX()-1 && destY == this.getY()-2)
-			return true;
+			//Check if destination is own piece, if so, not valid
+			if (board[destX][destY].getPlayer() == this.getPlayer()) {
+				return false;
+			}
+			//Otherwise destination is opponent or blank
+			else {
+				return true;
+			}
 		
 		return false;
 	}
