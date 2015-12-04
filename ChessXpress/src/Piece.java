@@ -2,24 +2,16 @@
 public class Piece {
 	private int x;
 	private int y;
-	private boolean inPlay;
 	private int player;
 	private PieceType type;
 	
-	public Piece(boolean inPlay, int x, int y, int player, PieceType type) {
-		this.inPlay = inPlay;		
+	public Piece(int x, int y, int player, PieceType type) {		
 		this.x = x;
 		this.y = y;
 		this.player = player;
 		this.type = type;
 	}
 
-	public boolean isInPlay() {
-        return inPlay;
-    }
-    public void setInPlay(boolean inPlay) {
-        this.inPlay = inPlay;
-    }
     public int getX() {
         return x;
     }

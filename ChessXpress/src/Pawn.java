@@ -1,14 +1,12 @@
 
 public class Pawn extends Piece {
 	boolean hasMoved;
-	PieceType type;
-	public Pawn(boolean inPlay, int x, int y, int player) {
-		super(inPlay, x, y, player);
-		type = PieceType.PAWN;
+	public Pawn(int x, int y, int player) {
+		super(x, y, player, PieceType.PAWN);
 	}
 	
 	@Override
-	public boolean isValid(Board board, int destX, int destY) {
+	public boolean isValid(Piece[][] board, int destX, int destY) {
 		
 		if(super.isValid(board, destX, destY) == false)
 			return false;

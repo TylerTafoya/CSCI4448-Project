@@ -1,13 +1,11 @@
 
 public class Queen extends Piece {
-	PieceType type;
-	public Queen(boolean inPlay, int x, int y, int player) {
-		super(inPlay, x, y, player);
-		type = PieceType.QUEEN;
+	public Queen(int x, int y, int player) {
+		super(x, y, player, PieceType.QUEEN);
 	}
 	
 	@Override
-	public boolean isValid(Board board, int destX, int destY) {
+	public boolean isValid(Piece[][] board, int destX, int destY) {
 		if(super.isValid(board, destX, destY) == false)
 			return false;
 		//Queens move in any direction 

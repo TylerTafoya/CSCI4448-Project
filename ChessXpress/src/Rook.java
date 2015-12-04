@@ -1,13 +1,11 @@
 
 public class Rook extends Piece {
-	PieceType type;
-	public Rook(boolean inPlay, int x, int y, int player) {
-		super(inPlay, x, y, player);
-		type = PieceType.ROOK;
+	public Rook(int x, int y, int player) {
+		super(x, y, player, PieceType.ROOK);
 	}
 	
 	@Override
-	public boolean isValid(Board board, int destX, int destY) {
+	public boolean isValid(Piece[][] board, int destX, int destY) {
 		if(super.isValid(board, destX, destY) == false)
 			return false;
 		//Rooks move horizontal or vertical

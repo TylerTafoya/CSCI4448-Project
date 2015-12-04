@@ -17,42 +17,42 @@ public class Game{
 		//Create pawns for player1
 		for (int i=0; i<8; i++)
 		{
-			gameBoard[1][i] = new Pawn(true,1,i, 1);
+			gameBoard[1][i] = new Pawn(1,i, 0);
 		}
 		//Create rooks for player1
-		gameBoard[0][0] = new Rook(true,0,0, 1);
-		gameBoard[0][7] = new Rook(true,0,7, 1);
+		gameBoard[0][0] = new Rook(0,0, 0);
+		gameBoard[0][7] = new Rook(0,7, 0);
 		//Create knights for player1
-		gameBoard[0][1] = new Knight(true,0,1, 1);
-		gameBoard[0][6] = new Knight(true,0,6, 1);
+		gameBoard[0][1] = new Knight(0,1, 0);
+		gameBoard[0][6] = new Knight(0,6, 0);
 		//Create bishops for player1
-		gameBoard[0][2] = new Bishop(true,0,2, 1);
-		gameBoard[0][5] = new Bishop(true,0,5, 1);
+		gameBoard[0][2] = new Bishop(0,2, 0);
+		gameBoard[0][5] = new Bishop(0,5, 0);
 		//Create queen for player 1
-		gameBoard[0][4] = new Queen(true,0,4, 1);
+		gameBoard[0][4] = new Queen(0,4, 0);
 		//Create king for player1
-		gameBoard[0][3] = new King(true,0,3, 1);
+		gameBoard[0][3] = new King(0,3, 0);
 		
 		
 		//Player 2 piece creation
 		//Create pawns for player1
 		for (int i=0; i<8; i++)
 		{
-			gameBoard[6][i] = new Pawn(true,6,i, 2);
+			gameBoard[6][i] = new Pawn(6,i, 1);
 		}
 		//Create rooks for player2
-		gameBoard[7][0] = new Rook(true,7,0, 2);
-		gameBoard[7][7] = new Rook(true,7,7, 2);
+		gameBoard[7][0] = new Rook(7,0, 1);
+		gameBoard[7][7] = new Rook(7,7, 1);
 		//Create knights for player2
-		gameBoard[7][1] = new Knight(true,7,1, 2);
-		gameBoard[7][6] = new Knight(true,7,6, 2);
+		gameBoard[7][1] = new Knight(7,1, 1);
+		gameBoard[7][6] = new Knight(7,6, 1);
 		//Create bishops for player2
-		gameBoard[7][2] = new Bishop(true,7,2, 2);
-		gameBoard[7][5] = new Bishop(true,7,5, 2);
+		gameBoard[7][2] = new Bishop(7,2, 1);
+		gameBoard[7][5] = new Bishop(7,5, 1);
 		//Create queen for player 1
-		gameBoard[7][3] = new Queen(true,7,3, 2);
+		gameBoard[7][3] = new Queen(7,3, 1);
 		//Create king for player2
-		gameBoard[7][4] = new King(true,7,4, 2);
+		gameBoard[7][4] = new King(7,4, 1);
 		
 		
 		
@@ -60,7 +60,7 @@ public class Game{
 		Piece player1King;
 		for (int i=0; i<16; i++) {
 			for (int j=0; j<16; j++) {
-				if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 1)) {
+				if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 0)) {
 					player1King = gameBoard[i][j];
 				}
 			}
@@ -69,7 +69,7 @@ public class Game{
 		Piece player2King;
 		for (int i=0; i<16; i++) {
 			for (int j=0; j<16; j++) {
-				if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 2)) {
+				if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 1)) {
 					player2King = gameBoard[i][j];
 				}
 			}

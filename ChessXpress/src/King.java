@@ -1,11 +1,11 @@
 
 public class King extends Piece {
-	public King(boolean inPlay, int x, int y, int player) {
-		super(inPlay, x, y, player, PieceType.KING);
+	public King(int x, int y, int player) {
+		super(x, y, player, PieceType.KING);
 	}
 	
 	@Override
-	public boolean isValid(Board board, int destX, int destY) {
+	public boolean isValid(Piece[][] board, int destX, int destY) {
 		if(super.isValid(board, destX, destY) == false)
 			return false;
 		//Kings move in any direction by 1
@@ -25,9 +25,6 @@ public class King extends Piece {
 			return true;
 		if(destX == this.getX() && destY == this.getY()-1)
 			return true;
-		
-
-
 
 		return false;
 		
