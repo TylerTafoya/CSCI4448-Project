@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.applet.*;
 import java.awt.image.*;
+import java.awt.image.BufferedImage;
 
 public class Board extends Applet {
     
@@ -9,9 +10,22 @@ public class Board extends Applet {
           int row;   // Row number, from 0 to 7
           int col;   // Column number, from 0 to 7
           int x,y;   // Top-left corner of square
-          Image bksqu   = getImage(getCodeBase(), "bksq.gif");
-          Image wtsqu   = getImage(getCodeBase(), "wtsq.gif");
-       
+          //board squares
+          Image bksqu = getImage(getCodeBase(), "bksq.gif");
+          Image wtsqu = getImage(getCodeBase(), "wtsq.gif");
+          
+          //Pieces
+          //white
+          Image whiteBishopReg   = getImage(getCodeBase(), "wtbsh.gif");
+          Image whiteBishopHL   = getImage(getCodeBase(), "wtbshHi.gif");
+          Image whiteCastleReg   = getImage(getCodeBase(), "wtcas.gif");
+          Image whiteCastleHL   = getImage(getCodeBase(), "wtcasHi.gif");
+          //black
+          Image blackBishopReg   = getImage(getCodeBase(), "bkbsh.gif");
+          Image blackBishopHL   = getImage(getCodeBase(), "bkbshHi.gif");
+          Image blackCastleReg   = getImage(getCodeBase(), "bkcas.gif");
+          Image blackCastleHL   = getImage(getCodeBase(), "bkcasHi.gif");
+          
           for ( row = 0;  row < 8;  row++ ) {
         	  y = row * 40;
              for ( col = 0;  col < 8;  col++) {
@@ -26,6 +40,18 @@ public class Board extends Applet {
                 //g.fillRect(x, y, 40, 40);
              }
           }
+          //drawing default piece positions
+          g.drawImage(whiteBishopReg, 80, 280, this);
+          g.drawImage(whiteBishopReg, 200, 280, this);
+          g.drawImage(whiteCastleReg, 0, 280, this);
+          g.drawImage(whiteCastleReg, 280, 280, this);
+          
+          g.drawImage(blackBishopReg, 80, 0, this);
+          g.drawImage(blackBishopReg, 200, 0, this);
+          g.drawImage(blackCastleReg, 0, 0, this);
+          g.drawImage(blackCastleReg, 280, 0, this);
+          
+          
        }
        
        
