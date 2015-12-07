@@ -1,4 +1,4 @@
-package com.gamemenu;
+//package com.gamemenu;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,6 +23,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 
 public class GameMenuDemo extends Application {
 
@@ -30,10 +32,19 @@ public class GameMenuDemo extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+    	Mouse mouse = new Mouse();
         Pane root = new Pane();
         root.setPrefSize(800, 600);
-
+        
+        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        System.out.println(event.getSceneX());
+		        System.out.println(event.getSceneY());
+		        mouse.setPos(event.getSceneX(), event.getSceneY());
+		    }
+		});
+        
         InputStream is = Files.newInputStream(Paths.get("bin/old-train.jpg"));
         Image img = new Image(is);
         is.close();
@@ -42,7 +53,7 @@ public class GameMenuDemo extends Application {
         imgView.setFitWidth(800);
         imgView.setFitHeight(600);
 
-        gameMenu = new GameMenu();
+        gameMenu = new GameMenu(mouse);
         // changed from false to true
         gameMenu.setVisible(true);
 
@@ -76,7 +87,7 @@ public class GameMenuDemo extends Application {
     }
 
     private class GameMenu extends Parent {
-        public GameMenu() {
+        public GameMenu(Mouse mouse) {
             VBox menu0 = new VBox(10);
             VBox menu1 = new VBox(10);
 
@@ -97,6 +108,8 @@ public class GameMenuDemo extends Application {
                 ft.setToValue(0);
                 ft.setOnFinished(evt -> setVisible(false));
                 ft.play();
+                chessGame game = new chessGame(mouse);
+                game.start(0);
             });
 
 
@@ -154,7 +167,65 @@ public class GameMenuDemo extends Application {
             getChildren().addAll(bg, menu0);
         }
     }
-
+    private static class chessGame extends StackPane {
+    	private Mouse mouse;
+    	private Piece[][] gameBoard = new Piece[16][16];
+    	//board squares
+        private static final Image bksqu = new Image("bksq.gif");
+        private static final Image wtsqu = new Image("wtsq.gif");
+        private static final Image wtsquHL = new Image("wtsqHi.gif");
+        private static final Image bksquHL = new Image("bksqHi.gif");
+    	public chessGame(Mouse mouse) {
+    		//Player 1 (white) piece creation
+    		//Create pawns for player1
+    		for (int i=0; i<8; i++)
+    		{
+    			gameBoard[1][i] = new Pawn(1,i, 0);
+    		}
+    		//Create rooks for player1
+    		gameBoard[0][0] = new Rook(0,0, 0);
+    		gameBoard[0][7] = new Rook(0,7, 0);
+    		//Create knights for player1
+    		gameBoard[0][1] = new Knight(0,1, 0);
+    		gameBoard[0][6] = new Knight(0,6, 0);
+    		//Create bishops for player1
+    		gameBoard[0][2] = new Bishop(0,2, 0);
+    		gameBoard[0][5] = new Bishop(0,5, 0);
+    		//Create queen for player 1
+    		gameBoard[0][4] = new Queen(0,4, 0);
+    		//Create king for player1
+    		gameBoard[0][3] = new King(0,3, 0);
+    		
+    		
+    		//Player 2 piece creation
+    		//Create pawns for player1
+    		for (int i=0; i<8; i++)
+    		{
+    			gameBoard[6][i] = new Pawn(6,i, 1);
+    		}
+    		//Create rooks for player2
+    		gameBoard[7][0] = new Rook(7,0, 1);
+    		gameBoard[7][7] = new Rook(7,7, 1);
+    		//Create knights for player2
+    		gameBoard[7][1] = new Knight(7,1, 1);
+    		gameBoard[7][6] = new Knight(7,6, 1);
+    		//Create bishops for player2
+    		gameBoard[7][2] = new Bishop(7,2, 1);
+    		gameBoard[7][5] = new Bishop(7,5, 1);
+    		//Create queen for player 1
+    		gameBoard[7][3] = new Queen(7,3, 1);
+    		//Create king for player2
+    		gameBoard[7][4] = new King(7,4, 1);
+    	}
+    	public void start(int player) {
+    		//Main game loop
+    		
+    	}
+    	private void display(Piece[][] board) {
+    		System.out.println(mouse.getX());
+    		System.out.println(mouse.getY());
+    	}
+    }
     private static class MenuButton extends StackPane {
         private Text text;
 

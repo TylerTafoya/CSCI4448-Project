@@ -14,6 +14,8 @@ public class Board extends Applet {
           //board squares
           Image bksqu = getImage(getCodeBase(), "bksq.gif");
           Image wtsqu = getImage(getCodeBase(), "wtsq.gif");
+          Image wtsquHL = getImage(getCodeBase(), "wtsqHi.gif");
+          Image bksquHL = getImage(getCodeBase(), "bksqHi.gif");
           
           //Pieces
           //white
