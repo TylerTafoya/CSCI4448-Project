@@ -35,7 +35,7 @@ public class Game{
 		
 		
 		//Player 2 piece creation
-		//Create pawns for player1
+		//Create pawns for player2
 		for (int i=0; i<8; i++)
 		{
 			gameBoard[6][i] = new Pawn(6,i, 1);
@@ -154,4 +154,11 @@ public class Game{
 		}
 		return false;
 	}
+	
+	//check for checkmate
+	private static boolean isCheckmate(Piece king, Piece[][] board){
+		
+		return false;
+	}
+	
 }
