@@ -97,6 +97,8 @@ public class Board extends Applet {
           g.drawImage(blackKingReg, 160, 0, this);
           g.drawImage(blackQueenReg, 120, 0, this);
           
+          //print player's turn
+          g.drawString("Player 1's turn", 0, 340);
           
        }
  
