@@ -34,7 +34,7 @@ public class GameMenuDemo extends Application {
         Pane root = new Pane();
         root.setPrefSize(800, 600);
 
-        InputStream is = Files.newInputStream(Paths.get("res/images/old-train.jpg"));
+        InputStream is = Files.newInputStream(Paths.get("bin/old-train.jpg"));
         Image img = new Image(is);
         is.close();
 
