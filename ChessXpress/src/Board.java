@@ -16,6 +16,7 @@ public class Board extends Applet {
           
           //Pieces
           //white
+          
           Image whitePawnReg   = getImage(getCodeBase(), "wtpaw.gif");
           Image whitePawnHL   = getImage(getCodeBase(), "wtpawHi.gif");
           Image whiteBishopReg   = getImage(getCodeBase(), "wtbsh.gif");
