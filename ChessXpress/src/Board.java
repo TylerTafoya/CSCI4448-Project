@@ -10,13 +10,13 @@ public class Board extends Applet {
           int row;   // Row number, from 0 to 7
           int col;   // Column number, from 0 to 7
           int x,y;   // Top-left corner of square
+          final int SQUARE_SIZE = 40;
           //board squares
           Image bksqu = getImage(getCodeBase(), "bksq.gif");
           Image wtsqu = getImage(getCodeBase(), "wtsq.gif");
           
           //Pieces
           //white
-          
           Image whitePawnReg   = getImage(getCodeBase(), "wtpaw.gif");
           Image whitePawnHL   = getImage(getCodeBase(), "wtpawHi.gif");
           Image whiteBishopReg   = getImage(getCodeBase(), "wtbsh.gif");
@@ -43,8 +43,6 @@ public class Board extends Applet {
           Image blackQueenReg   = getImage(getCodeBase(), "bkque.gif");
           Image blackQueenHL   = getImage(getCodeBase(), "bkqueHi.gif");
           
-          final int SQUARE_SIZE = 40;
-          
           //draw board squares
           for ( row = 0;  row < 8;  row++ ) {
         	  y = row * SQUARE_SIZE;
@@ -64,40 +62,41 @@ public class Board extends Applet {
            *	multiply by square size
            */
           
-          g.drawImage(whitePawnReg, 0, 240, this);
-          g.drawImage(whitePawnReg, 40, 240, this);
-          g.drawImage(whitePawnReg, 80, 240, this);
-          g.drawImage(whitePawnReg, 120, 240, this);
-          g.drawImage(whitePawnReg, 160, 240, this);
-          g.drawImage(whitePawnReg, 200, 240, this);
-          g.drawImage(whitePawnReg, 240, 240, this);
-          g.drawImage(whitePawnReg, 280, 240, this);
-          g.drawImage(whiteBishopReg, 80, 280, this);
-          g.drawImage(whiteBishopReg, 200, 280, this);
-          g.drawImage(whiteCastleReg, 0, 280, this);
-          g.drawImage(whiteCastleReg, 280, 280, this);
-          g.drawImage(whiteKnightReg, 40, 280, this);
-          g.drawImage(whiteKnightReg, 240, 280, this);
-          g.drawImage(whiteKingReg, 160, 280, this);
-          g.drawImage(whiteQueenReg, 120, 280, this);
+          g.drawImage(whitePawnReg,   0*SQUARE_SIZE, 6*SQUARE_SIZE, this);
+          g.drawImage(whitePawnReg,   1*SQUARE_SIZE, 6*SQUARE_SIZE, this);
+          g.drawImage(whitePawnReg,   2*SQUARE_SIZE, 6*SQUARE_SIZE, this);
+          g.drawImage(whitePawnReg,   3*SQUARE_SIZE, 6*SQUARE_SIZE, this);
+          g.drawImage(whitePawnReg,   4*SQUARE_SIZE, 6*SQUARE_SIZE, this);
+          g.drawImage(whitePawnReg,   5*SQUARE_SIZE, 6*SQUARE_SIZE, this);
+          g.drawImage(whitePawnReg,   6*SQUARE_SIZE, 6*SQUARE_SIZE, this);
+          g.drawImage(whitePawnReg,   7*SQUARE_SIZE, 6*SQUARE_SIZE, this);
+          g.drawImage(whiteCastleReg, 0*SQUARE_SIZE, 7*SQUARE_SIZE, this);
+          g.drawImage(whiteKnightReg, 1*SQUARE_SIZE, 7*SQUARE_SIZE, this);
+          g.drawImage(whiteBishopReg, 2*SQUARE_SIZE, 7*SQUARE_SIZE, this);
+          g.drawImage(whiteQueenReg,  3*SQUARE_SIZE, 7*SQUARE_SIZE, this);
+          g.drawImage(whiteKingReg,   4*SQUARE_SIZE, 7*SQUARE_SIZE, this);
+          g.drawImage(whiteBishopReg, 5*SQUARE_SIZE, 7*SQUARE_SIZE, this);
+          g.drawImage(whiteKnightReg, 6*SQUARE_SIZE, 7*SQUARE_SIZE, this);
+          g.drawImage(whiteCastleReg, 7*SQUARE_SIZE, 7*SQUARE_SIZE, this);
           
-          g.drawImage(blackPawnReg, 0, 40, this);
-          g.drawImage(blackPawnReg, 40, 40, this);
-          g.drawImage(blackPawnReg, 80, 40, this);
-          g.drawImage(blackPawnReg, 120, 40, this);
-          g.drawImage(blackPawnReg, 160, 40, this);
-          g.drawImage(blackPawnReg, 200, 40, this);
-          g.drawImage(blackPawnReg, 240, 40, this);
-          g.drawImage(blackPawnReg, 280, 40, this);
-          g.drawImage(blackBishopReg, 80, 0, this);
-          g.drawImage(blackBishopReg, 200, 0, this);
-          g.drawImage(blackCastleReg, 0, 0, this);
-          g.drawImage(blackCastleReg, 280, 0, this);
-          g.drawImage(blackKnightReg, 40, 0, this);
-          g.drawImage(blackKnightReg, 240, 0, this);
-          g.drawImage(blackKingReg, 160, 0, this);
-          g.drawImage(blackQueenReg, 120, 0, this);
-          
+         
+          g.drawImage(blackPawnReg,   0*SQUARE_SIZE, 1*SQUARE_SIZE, this);
+          g.drawImage(blackPawnReg,   1*SQUARE_SIZE, 1*SQUARE_SIZE, this);
+          g.drawImage(blackPawnReg,   2*SQUARE_SIZE, 1*SQUARE_SIZE, this);
+          g.drawImage(blackPawnReg,   3*SQUARE_SIZE, 1*SQUARE_SIZE, this);
+          g.drawImage(blackPawnReg,   4*SQUARE_SIZE, 1*SQUARE_SIZE, this);
+          g.drawImage(blackPawnReg,   5*SQUARE_SIZE, 1*SQUARE_SIZE, this);
+          g.drawImage(blackPawnReg,   6*SQUARE_SIZE, 1*SQUARE_SIZE, this);
+          g.drawImage(blackPawnReg,   7*SQUARE_SIZE, 1*SQUARE_SIZE, this);
+          g.drawImage(blackCastleReg, 0*SQUARE_SIZE, 0*SQUARE_SIZE, this);
+          g.drawImage(blackKnightReg, 1*SQUARE_SIZE, 0*SQUARE_SIZE, this);
+          g.drawImage(blackBishopReg, 2*SQUARE_SIZE, 0*SQUARE_SIZE, this);
+          g.drawImage(blackQueenReg,  3*SQUARE_SIZE, 0*SQUARE_SIZE, this);
+          g.drawImage(blackKingReg,   4*SQUARE_SIZE, 0*SQUARE_SIZE, this);
+          g.drawImage(blackBishopReg, 5*SQUARE_SIZE, 0*SQUARE_SIZE, this);
+          g.drawImage(blackKnightReg, 6*SQUARE_SIZE, 0*SQUARE_SIZE, this);
+          g.drawImage(blackCastleReg, 7*SQUARE_SIZE, 0*SQUARE_SIZE, this);
+
           //print player's turn
           g.drawString("Player 1's turn", 0, 340);
           
