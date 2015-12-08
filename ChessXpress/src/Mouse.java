@@ -10,10 +10,13 @@ public class Mouse {
 		this.x = x;
 		this.y = y;
 	}
-	public double getX() {
-		return this.x;
+	//Return the square coordinates
+	public int getX() {
+		int tempX = (int) (this.x/75);
+		return tempX;
 	}
-	public double getY() {
-		return this.y;
+	public int getY() {
+		int tempY = (int) (this.y/75);
+		return tempY;
 	}
 }

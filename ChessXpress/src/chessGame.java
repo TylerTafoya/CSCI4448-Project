@@ -1,11 +1,24 @@
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-
+import javafx.scene.text.Text;
+@SuppressWarnings("unchecked")
 public class chessGame {
+		//Coordinates to highlight
+		private int xHi = 0;
+		private int yHi = 0;
+		//If a piece was previously selected
+		private boolean selected = false;
+		//Which players turn it is
+		private int turn = 0;
+		//If this is the first run of display
+        private boolean first;
     	private Pane root;
     	//Mouse listener
     	private Mouse mouse;
@@ -15,6 +28,8 @@ public class chessGame {
     	private Rectangle[][] r = new Rectangle[8][8];
     	//2D array of rectangles for pieces
     	private Rectangle[][] p = new Rectangle[8][8];
+    	//Text to display for players turn
+    	private Text text;
     	//Height of window / number of squares
 		private int square_size = (600)/8; //75
     	//board squares
@@ -49,8 +64,9 @@ public class chessGame {
         private Image blackKingHL = new Image("file:pic/bkkingHi.gif");
         private Image blackQueenReg = new Image("file:pic/bkque.gif");
         private Image blackQueenHL = new Image("file:pic/bkqueHi.gif");
-        private boolean first;
+        
     	public chessGame(Mouse mouse, Pane root) {
+    		//System.out.println("init");
     		this.mouse = mouse;
     		this.root = root;
     		//Check if this is the first run of the display
@@ -127,10 +143,23 @@ public class chessGame {
     		
     		
     	}
+    	public void click() {
+    		//System.out.println("Clicked");
+    		//if (this.started) {
+    			this.xHi = mouse.getX();
+    			this.yHi = mouse.getY();
+    			this.turn = 1-this.turn;
+    			//redisplay
+    			display();
+    		//}
+    	}
     	public void start(int player) {
+    		//System.out.println("started");
+    		//this.started = true;
+    		display();
+    		this.first = false;
     		//Main game loop
     		//Create board for first time
-    		display(1,1);
     		//Variable to check for finished
     		boolean done = false;
     		//Which players turn it is. 0 is player 1, 1 is player 2
@@ -140,7 +169,7 @@ public class chessGame {
     		//Check if player 2 is in check. 0 not check, 1 in check, 2 checkmate
     		int check2 = 0;
     		
-    		while (done == false) {
+    		//while (done == false) {
     			//Call move, get new board
     			//move(turn,check1,check2);
     			/*
@@ -196,61 +225,81 @@ public class chessGame {
     				check2 = 0;
     			}
     			*/
-    			//Switch which players turn it is
-    			turn = 1-turn;
+    			//if (action) {
+    				//System.out.println("Clicked in main loop");
+    				//display(5,6);
+    			
+    				//display(this.mouse.getX(),this.mouse.getY());
+    				//action = false;
+    			
+    			//}
+    			//turn = 1- turn;
+    			
     			//Redisplay
-    			display(0,0);
-    		}
+    			
+    		//}
 
     	}
     	//Display the board. Call this function to update the board
     	//Takes in boolean first
     	
-    	private void display(int xHi, int yHi) {
-    		
-    		//Remove all pieces from
+    	private void display() {
+    		System.out.println("display");
+    		//Remove all pieces from root pane after first iteration
     		//System.out.println(this.mouse.getX());
     		//System.out.println(this.mouse.getY());
+    		
     		if (first == false) {
-    			System.out.println("First run");
 	    		for (int row=0; row<8; row++) {
 	    			for (int col=0; col<8; col++) {
 	    				this.root.getChildren().remove(this.p[row][col]);
 	    				this.root.getChildren().remove(this.r[row][col]);
 	    			}
 	    		}
+	    		this.root.getChildren().remove(text);
     		}
+    		Rectangle playerTurn = new Rectangle(200,100);
+    		playerTurn.setX(600);
+    		playerTurn.setY(0);
+    		playerTurn.setFill(Color.TRANSPARENT);
+    		text = new Text("Player " + (turn+1) + "'s turn");
+    		text.setFont(text.getFont().font(28));
+            text.setFill(Color.WHITE);
+            text.setTranslateX(610);
+            text.setTranslateY(50);
+    		this.root.getChildren().addAll(playerTurn,text);
     		
     		for (int row=0; row<8; row++) {
     			for (int col=0; col<8; col++) {
     				//White square
                     if ( (row % 2) == (col % 2) ){
                     	//Check if this square is valid or selected, if so highlight
-                    	//if ((row == xHi) && (col == yHi)){
-                    		//this.r[row][col].setFill(new ImagePattern(this.wtsquHL, 0, 0, 1, 1, true));
-                    	//}
+                    	if ((row == this.yHi) && (col == this.xHi)){
+                    		this.r[row][col].setFill(new ImagePattern(this.wtsquHL, 0, 0, 1, 1, true));
+                    	}
                     	//Otherwise square is normal
-                    	//else {
+                    	else {
 	                    	//Fill rectangle with background white pattern
 	                    	this.r[row][col].setFill(new ImagePattern(this.wtsqu, 0, 0, 1, 1, true));
-                    	//}
+                    	}
                     }
                     //Black square
                     else{
                     	//Check if this square is valid or selected, if so highlight
-                    	//if ((row == xHi) && (col == yHi)){
-                    		//this.r[row][col].setFill(new ImagePattern(this.bksquHL, 0, 0, 1, 1, true));
-                    	//}
+                    	if ((row == this.yHi) && (col == this.xHi)){
+                    		this.r[row][col].setFill(new ImagePattern(this.bksquHL, 0, 0, 1, 1, true));
+                    	}
                     	//Otherwise square is normal
-                    	//else {
+                    	else {
                     		//Fill rectangle with background black pattern
                     		this.r[row][col].setFill(new ImagePattern(this.bksqu, 0, 0, 1, 1, true));
-                    	//}
+                    	}
                     }
                     //Add this square to the root pane
                     this.root.getChildren().add(this.r[row][col]);
     			}
     		}
+    		
     		//Now run though board again and add pieces
     		for (int row=0; row<8; row++) {
     			for (int col=0; col<8; col++) {
@@ -284,6 +333,10 @@ public class chessGame {
                                 this.p[row][col].setFill(new ImagePattern(this.whiteQueenReg, 0, 0, 1, 1, true));
                                 this.root.getChildren().add(this.p[row][col]);
     	                    	break;
+    	                    case BLANK:
+    	                    	this.p[row][col].setFill(Color.TRANSPARENT);
+    	                    	this.root.getChildren().add(this.p[row][col]);
+    	                    	break;
                         }
                     }
                     //Otherwise black piece
@@ -314,6 +367,10 @@ public class chessGame {
                                 this.p[row][col].setFill(new ImagePattern(this.blackQueenReg, 0, 0, 1, 1, true));
                                 this.root.getChildren().add(this.p[row][col]);
                                 break;
+                            case BLANK:
+                            	this.p[row][col].setFill(Color.TRANSPARENT);
+                            	this.root.getChildren().add(this.p[row][col]);
+                            	break;
                     
                         }
                     }

@@ -25,23 +25,27 @@ import javafx.util.Duration;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
-
+@SuppressWarnings("unchecked")
 public class GameMenuDemo extends Application {
 
-    private GameMenu gameMenu;
+    chessGame game;
+	private GameMenu gameMenu;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
     	Mouse mouse = new Mouse();
         Pane root = new Pane();
         root.setPrefSize(800, 600);
-        
+        game = new chessGame(mouse, root);
         root.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent event) {
-		        System.out.println(event.getSceneX());
-		        System.out.println(event.getSceneY());
+		        //System.out.println(event.getSceneX());
+		        //System.out.println(event.getSceneY());
 		        mouse.setPos(event.getSceneX(), event.getSceneY());
+		        //System.out.println(mouse.getX());
+		        //System.out.println(mouse.getY());
+		        game.click();
 		    }
 		});
         
@@ -53,7 +57,7 @@ public class GameMenuDemo extends Application {
         imgView.setFitWidth(800);
         imgView.setFitHeight(600);
 
-        gameMenu = new GameMenu(mouse, root);
+        gameMenu = new GameMenu(mouse, root);//, game);
         // changed from false to true
         gameMenu.setVisible(true);
 
@@ -108,7 +112,7 @@ public class GameMenuDemo extends Application {
                 ft.setToValue(0);
                 ft.setOnFinished(evt -> setVisible(false));
                 ft.play();
-                chessGame game = new chessGame(mouse, root);
+                //chessGame game = new chessGame(mouse, root);
                 game.start(0);
             });
 
