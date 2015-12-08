@@ -28,7 +28,7 @@ public class Queen extends Piece {
 			return valid;
 		}
 		//Act like a bishop
-		else if(destX - this.getX() == destY - this.getY()) {
+		else if(Math.abs(destX - this.getX()) == Math.abs(destY - this.getY())) {
 			//Create temporary Bishop and test movement using bishops isValid
 			Piece tempBishop = new Bishop(this.getX(),this.getY(),this.getPlayer());
 			boolean valid = tempBishop.isValid(board, destX, destY);

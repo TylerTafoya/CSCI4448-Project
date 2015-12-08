@@ -16,6 +16,8 @@ public class chessGame {
 		private boolean selected = false;
 		//Which players turn it is
 		private int turn = 0;
+		//If the game has started
+		private boolean started = false;
 		//If this is the first run of display
         private boolean first;
     	private Pane root;
@@ -135,7 +137,7 @@ public class chessGame {
     	}
     	public void click() {
     		//System.out.println("Clicked");
-    		//if (this.started) {
+    		if (this.started) {
     			
     			//Check if it is the current players piece
     			if (this.gameBoard[mouse.getX()][mouse.getY()].getPlayer() == turn) {
@@ -164,13 +166,14 @@ public class chessGame {
     			
     			//redisplay
     			display();
-    		//}
+    		}
     	}
     	public void start(int player) {
     		//System.out.println("started");
     		//this.started = true;
     		display();
     		this.first = false;
+    		this.started = true;
     	}
     	
     	private void display() {
