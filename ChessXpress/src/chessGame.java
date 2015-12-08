@@ -1,0 +1,330 @@
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
+
+public class chessGame {
+    	private Pane root;
+    	//Mouse listener
+    	private Mouse mouse;
+    	//Game board of pieces
+    	private Piece[][] gameBoard = new Piece[8][8];
+    	//2D array of rectangles for board
+    	private Rectangle[][] r = new Rectangle[8][8];
+    	//2D array of rectangles for pieces
+    	private Rectangle[][] p = new Rectangle[8][8];
+    	//Height of window / number of squares
+		private int square_size = (600)/8; //75
+    	//board squares
+        private Image bksqu = new Image("file:pic/bksq.gif");
+    	private Image wtsqu = new Image("file:pic/wtsq.gif");
+        private Image wtsquHL = new Image("file:pic/wtsqHi.gif");
+        private Image bksquHL = new Image("file:pic/bksqHi.gif");
+    	//Pieces
+        //white
+        private Image whitePawnReg = new Image("file:pic/wtpaw.gif");
+        private Image whitePawnHL = new Image("file:pic/wtpawHi.gif");
+        private Image whiteBishopReg = new Image("file:pic/wtbsh.gif");
+        private Image whiteBishopHL = new Image("file:pic/wtbshHi.gif");
+        private Image whiteCastleReg = new Image("file:pic/wtcas.gif");
+        private Image whiteCastleHL = new Image("file:pic/wtcasHi.gif");
+        private Image whiteKnightReg = new Image("file:pic/wtkght.gif");
+        private Image whiteKnightHL = new Image("file:pic/wtkghtHi.gif");
+        private Image whiteKingReg = new Image("file:pic/wtking.gif");
+        private Image whiteKingHL = new Image("file:pic/wtkingHi.gif");
+        private Image whiteQueenReg = new Image("file:pic/wtque.gif");
+        private Image whiteQueenHL = new Image("file:pic/wtqueHi.gif");
+        //black
+        private Image blackPawnReg = new Image("file:pic/bkpaw.gif");
+        private Image blackPawnHL = new Image("file:pic/bkpawHi.gif");
+        private Image blackBishopReg = new Image("file:pic/bkbsh.gif");
+        private Image blackBishopHL = new Image("file:pic/bkbshHi.gif");
+        private Image blackCastleReg = new Image("file:pic/bkcas.gif");
+        private Image blackCastleHL = new Image("file:pic/bkcasHi.gif");
+        private Image blackKnightReg = new Image("file:pic/bkkght.gif");
+        private Image blackKnightHL = new Image("file:pic/bkkghtHi.gif");
+        private Image blackKingReg = new Image("file:pic/bkking.gif");
+        private Image blackKingHL = new Image("file:pic/bkkingHi.gif");
+        private Image blackQueenReg = new Image("file:pic/bkque.gif");
+        private Image blackQueenHL = new Image("file:pic/bkqueHi.gif");
+        private boolean first;
+    	public chessGame(Mouse mouse, Pane root) {
+    		this.mouse = mouse;
+    		this.root = root;
+    		//Check if this is the first run of the display
+    		this.first = true;
+    		//Create whole board as blank pieces to be overwritten
+    		for (int row=0; row<8; row++) {
+    			for (int col=0; col<8; col++) {
+    				this.gameBoard[row][col] = new Blank(row,col,2);
+    			}
+    		}
+    		//Player 1 (white) piece creation
+    		//Create pawns for player1
+    		for (int i=0; i<8; i++)
+    		{
+    			this.gameBoard[1][i] = new Pawn(1,i, 0);
+    		}
+    		//Create rooks for player1
+    		this.gameBoard[0][0] = new Rook(0,0, 0);
+    		this.gameBoard[0][7] = new Rook(0,7, 0);
+    		//Create knights for player1
+    		this.gameBoard[0][1] = new Knight(0,1, 0);
+    		this.gameBoard[0][6] = new Knight(0,6, 0);
+    		//Create bishops for player1
+    		this.gameBoard[0][2] = new Bishop(0,2, 0);
+    		this.gameBoard[0][5] = new Bishop(0,5, 0);
+    		//Create queen for player 1
+    		this.gameBoard[0][4] = new Queen(0,4, 0);
+    		//Create king for player1
+    		this.gameBoard[0][3] = new King(0,3, 0);
+    		
+    		
+    		//Player 2 piece creation
+    		//Create pawns for player1
+    		for (int i=0; i<8; i++)
+    		{
+    			this.gameBoard[6][i] = new Pawn(6,i, 1);
+    		}
+    		//Create rooks for player2
+    		this.gameBoard[7][0] = new Rook(7,0, 1);
+    		this.gameBoard[7][7] = new Rook(7,7, 1);
+    		//Create knights for player2
+    		this.gameBoard[7][1] = new Knight(7,1, 1);
+    		this.gameBoard[7][6] = new Knight(7,6, 1);
+    		//Create bishops for player2
+    		this.gameBoard[7][2] = new Bishop(7,2, 1);
+    		this.gameBoard[7][5] = new Bishop(7,5, 1);
+    		//Create queen for player 1
+    		this.gameBoard[7][3] = new Queen(7,3, 1);
+    		//Create king for player2
+    		this.gameBoard[7][4] = new King(7,4, 1);
+    		//Create game board rectangles
+    		for (int row=0; row<8; row++) {
+    			for (int col=0; col <8; col++) {
+    				this.r[row][col] = new Rectangle();
+    				this.r[row][col].setX(col * this.square_size);
+    				this.r[row][col].setY(row * this.square_size);
+    				this.r[row][col].setWidth(this.square_size);
+    				this.r[row][col].setHeight(this.square_size);
+    				
+    			}
+    		}
+    		
+    		//Create piece rectangles
+    		for (int row=0; row<8; row++) {
+    			for (int col=0; col <8; col++) {
+    				this.p[row][col] = new Rectangle();
+    				this.p[row][col].setX(col * this.square_size);
+    				this.p[row][col].setY(row * this.square_size);
+    				this.p[row][col].setWidth(this.square_size);
+    				this.p[row][col].setHeight(this.square_size);
+    				
+    			}
+    		}
+    		
+    		
+    	}
+    	public void start(int player) {
+    		//Main game loop
+    		//Create board for first time
+    		display(1,1);
+    		//Variable to check for finished
+    		boolean done = false;
+    		//Which players turn it is. 0 is player 1, 1 is player 2
+    		int turn = player;
+    		//Check if player 1 is in check. 0 not check, 1 in check, 2 checkmate
+    		int check1 = 0;
+    		//Check if player 2 is in check. 0 not check, 1 in check, 2 checkmate
+    		int check2 = 0;
+    		
+    		while (done == false) {
+    			//Call move, get new board
+    			//move(turn,check1,check2);
+    			/*
+    			//Check for check and checkmate
+    			//Check for player 1
+    			//Find player 1s king
+    			Piece player1King;
+    			for (int i=0; i<16; i++) {
+    				for (int j=0; j<16; j++) {
+    					if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 0)) {
+    						player1King = gameBoard[i][j];
+    					}
+    				}
+    			}
+    			//Check for check
+    			if (isCheck(player1King, gameBoard)) {
+    				//Check for checkmate
+    				if (isCheckmate(player1King, gameBoard)) {
+    					check1 = 2;
+    				}
+    				//Otherwise just check
+    				else {
+    					check1 = 1;
+    				}
+    			}
+    			//Otherwise not in check
+    			else {
+    				check1 = 0;
+    			}
+    			//Check for player 2
+    			//Find player 2s king
+    			Piece player2King;
+    			for (int i=0; i<16; i++) {
+    				for (int j=0; j<16; j++) {
+    					if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 1)) {
+    						player2King = gameBoard[i][j];
+    					}
+    				}
+    			}
+    			//Check for check
+    			if (isCheck(player2King, gameBoard)) {
+    				//Check for checkmate
+    				if (isCheckmate(player2King, gameBoard)) {
+    					check2 = 2;
+    				}
+    				//Otherwise just check
+    				else {
+    					check2 = 1;
+    				}
+    			}
+    			//Otherwise not in check
+    			else {
+    				check2 = 0;
+    			}
+    			*/
+    			//Switch which players turn it is
+    			turn = 1-turn;
+    			//Redisplay
+    			display(0,0);
+    		}
+
+    	}
+    	//Display the board. Call this function to update the board
+    	//Takes in boolean first
+    	
+    	private void display(int xHi, int yHi) {
+    		
+    		//Remove all pieces from
+    		//System.out.println(this.mouse.getX());
+    		//System.out.println(this.mouse.getY());
+    		if (first == false) {
+    			System.out.println("First run");
+	    		for (int row=0; row<8; row++) {
+	    			for (int col=0; col<8; col++) {
+	    				this.root.getChildren().remove(this.p[row][col]);
+	    				this.root.getChildren().remove(this.r[row][col]);
+	    			}
+	    		}
+    		}
+    		
+    		for (int row=0; row<8; row++) {
+    			for (int col=0; col<8; col++) {
+    				//White square
+                    if ( (row % 2) == (col % 2) ){
+                    	//Check if this square is valid or selected, if so highlight
+                    	//if ((row == xHi) && (col == yHi)){
+                    		//this.r[row][col].setFill(new ImagePattern(this.wtsquHL, 0, 0, 1, 1, true));
+                    	//}
+                    	//Otherwise square is normal
+                    	//else {
+	                    	//Fill rectangle with background white pattern
+	                    	this.r[row][col].setFill(new ImagePattern(this.wtsqu, 0, 0, 1, 1, true));
+                    	//}
+                    }
+                    //Black square
+                    else{
+                    	//Check if this square is valid or selected, if so highlight
+                    	//if ((row == xHi) && (col == yHi)){
+                    		//this.r[row][col].setFill(new ImagePattern(this.bksquHL, 0, 0, 1, 1, true));
+                    	//}
+                    	//Otherwise square is normal
+                    	//else {
+                    		//Fill rectangle with background black pattern
+                    		this.r[row][col].setFill(new ImagePattern(this.bksqu, 0, 0, 1, 1, true));
+                    	//}
+                    }
+                    //Add this square to the root pane
+                    this.root.getChildren().add(this.r[row][col]);
+    			}
+    		}
+    		//Now run though board again and add pieces
+    		for (int row=0; row<8; row++) {
+    			for (int col=0; col<8; col++) {
+    				//Now check and map the pieces on gameBoard
+                    //Check player for color
+                    //White
+                    if (gameBoard[row][col].getPlayer() == 0) {
+                    	//Change image for each piece
+                        switch (gameBoard[row][col].getType()) {
+    	                    case BISHOP:
+    	        				this.p[row][col].setFill(new ImagePattern(this.whiteBishopReg, 0, 0, 1, 1, true));
+    	                    	this.root.getChildren().add(this.p[row][col]);
+    	                    	break;
+    	                    case KING:
+                                this.p[row][col].setFill(new ImagePattern(this.whiteKingReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+    	                    	break;
+    	                    case KNIGHT:
+                                this.p[row][col].setFill(new ImagePattern(this.whiteKnightReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+    	                    	break;
+    	                    case PAWN:
+                                this.p[row][col].setFill(new ImagePattern(this.whitePawnReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+    	                    	break;
+    	                    case ROOK:   
+                                this.p[row][col].setFill(new ImagePattern(this.whiteCastleReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+    	                    	break;
+    	                    case QUEEN: 
+                                this.p[row][col].setFill(new ImagePattern(this.whiteQueenReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+    	                    	break;
+                        }
+                    }
+                    //Otherwise black piece
+                    else if (gameBoard[row][col].getPlayer() == 1){
+                        //Change image for each piece
+                        switch (gameBoard[row][col].getType()) {
+                            case BISHOP:
+                                this.p[row][col].setFill(new ImagePattern(this.blackBishopReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+                                break;
+                            case KING:
+                                this.p[row][col].setFill(new ImagePattern(this.blackKingReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+                                break;
+                            case KNIGHT:
+                                this.p[row][col].setFill(new ImagePattern(this.blackKnightReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+                                break;
+                            case PAWN:
+                                this.p[row][col].setFill(new ImagePattern(this.blackPawnReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+                                break;
+                            case ROOK:   
+                                this.p[row][col].setFill(new ImagePattern(this.blackCastleReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+                                break;
+                            case QUEEN: 
+                                this.p[row][col].setFill(new ImagePattern(this.blackQueenReg, 0, 0, 1, 1, true));
+                                this.root.getChildren().add(this.p[row][col]);
+                                break;
+                    
+                        }
+                    }
+                    
+                    //Otherwise it is a blank space
+                    else {
+                    	this.p[row][col].setFill(Color.TRANSPARENT);
+                    	this.root.getChildren().add(this.p[row][col]);
+                    }
+                    
+    			}
+    		}
+    	}
+    }
