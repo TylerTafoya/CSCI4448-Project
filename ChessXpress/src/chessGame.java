@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 @SuppressWarnings("unchecked")
 public class chessGame {
 		//Coordinates to highlight
-		private int xHi = 0; //Amount over
+		private int xHi = 8; //Amount over
 		private int yHi = 0; //Amount down
 		//If a piece was previously selected
 		private boolean selected = false;
@@ -23,7 +23,7 @@ public class chessGame {
     	//Mouse listener
     	private Mouse mouse;
     	//Game board of pieces
-    	private Piece[][] gameBoard = new Piece[8][8];
+    	private Piece[][] gameBoard = new Piece[9][8];
     	//2D array of rectangles for board
     	private Rectangle[][] r = new Rectangle[8][8];
     	//2D array of rectangles for pieces
@@ -117,6 +117,9 @@ public class chessGame {
     		this.gameBoard[7][3] = new Queen(7,3, 1);
     		//Create king for player2
     		this.gameBoard[7][4] = new King(7,4, 1);
+    		
+    		//Permanent Blank spot for between turns
+    		this.gameBoard[8][0] = new Blank(8,0,2);
     		//Create game board rectangles
     		for (int row=0; row<8; row++) {
     			for (int col=0; col <8; col++) {
@@ -148,11 +151,32 @@ public class chessGame {
     		//if (this.started) {
     			
     			//Check if it is the current players piece
-    			//if (this.gameBoard[mouse.getX()][mouse.getY()].getPlayer() == turn) {
-    				this.xHi = mouse.getX();
-        			this.yHi = mouse.getY();
-    				this.turn = 1-this.turn;
-    			//}
+    			if (this.gameBoard[mouse.getX()][mouse.getY()].getPlayer() == turn) {
+    				this.yHi = mouse.getY();
+        			this.xHi = mouse.getX();
+        			selected = true;
+    			}
+    			//Check if the player has selected a piece and a valid destination for it
+    			if (selected && this.gameBoard[this.xHi][this.yHi].isValid(this.gameBoard, mouse.getX(), mouse.getY())) {
+    				//Move piece to destination and switch player turn
+    				this.gameBoard[mouse.getX()][mouse.getY()] = this.gameBoard[this.xHi][this.yHi];
+    				//Set piece variables
+    				this.gameBoard[mouse.getX()][mouse.getY()].setX(mouse.getX());
+    				this.gameBoard[mouse.getX()][mouse.getY()].setY(mouse.getY());
+    				//Set old space to Blank
+    				this.gameBoard[this.xHi][this.yHi] = new Blank(this.xHi,this.yHi,2);
+    				//Remove highlighting
+    				this.yHi = 0;
+    				this.xHi = 8;
+    				//Change turn
+    				turn = 1-turn;
+    				selected = false;
+    			}
+    				
+    				
+    				//this.turn = 1-this.turn;
+    			
+    			
     			//redisplay
     			display();
     		//}
@@ -278,7 +302,7 @@ public class chessGame {
     				//White square
                     if ( (row % 2) == (col % 2) ){
                     	//Check if this square is valid or selected, if so highlight
-                    	if (((row == this.yHi) && (col == this.xHi)) || (this.gameBoard[this.yHi][this.xHi].isValid(this.gameBoard, row, col))){
+                    	if (((row == this.xHi) && (col == this.yHi)) || (this.gameBoard[this.xHi][this.yHi].isValid(this.gameBoard, row, col))){
                     		this.r[row][col].setFill(new ImagePattern(this.wtsquHL, 0, 0, 1, 1, true));
                     	}
                     	//Otherwise square is normal
@@ -290,7 +314,7 @@ public class chessGame {
                     //Black square
                     else{
                     	//Check if this square is valid or selected, if so highlight
-                    	if (((row == this.yHi) && (col == this.xHi)) || this.gameBoard[this.yHi][this.xHi].isValid(this.gameBoard, row, col)){
+                    	if (((row == this.xHi) && (col == this.yHi)) || this.gameBoard[this.xHi][this.yHi].isValid(this.gameBoard, row, col)){
                     		this.r[row][col].setFill(new ImagePattern(this.bksquHL, 0, 0, 1, 1, true));
                     	}
                     	//Otherwise square is normal

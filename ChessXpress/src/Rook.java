@@ -11,7 +11,7 @@ public class Rook extends Piece {
 			return false;
 		//Rooks move horizontal or vertical
 		//Check vertical case
-		if(destX == this.getX()) {
+		if(destY == this.getY()) {
 			//Destination is above the piece
 			if (destX < this.getX()) {
 				//Iterate backwards towards destination
@@ -30,13 +30,13 @@ public class Rook extends Piece {
 					//Otherwise spot is not destination
 					else {
 						//Return false is space is occupied (not Blank
-						if (!(board[i][this.getY()].getPlayer() == 2)) {
+						if ((board[i][this.getY()].getPlayer() != 2)) {
 							return false;
 						}
 					}
 				}
 			}
-		}
+		
 			//Destination is below the piece
 			else {
 				//Iterate forwards towards destination
@@ -55,14 +55,15 @@ public class Rook extends Piece {
 					//Otherwise spot is not destination
 					else {
 						//Return false is space is occupied (not Blank
-						if (!(board[i][this.getY()].getPlayer() == 2)) {
+						if ((board[i][this.getY()].getPlayer() != 2)) {
 							return false;
 						}
 					}
 				}
 		}
+		}
 		//Horizontal case
-		if(destY == this.getY()) {
+		if(destX == this.getX()) {
 			//Destination is to the left of the piece
 			if (destY < this.getY()) {
 				//Iterate backwards towards destination
@@ -81,13 +82,13 @@ public class Rook extends Piece {
 					//Otherwise spot is not destination
 					else {
 						//Return false is space is occupied (not Blank
-						if (!(board[this.getX()][i].getPlayer() == 2)) {
+						if ((board[this.getX()][i].getPlayer() != 2)) {
 							return false;
 						}
 					}
 				}
 			}
-		}
+		
 			//Destination is to the right of the piece
 			else {
 				//Iterate towards destination
@@ -106,11 +107,12 @@ public class Rook extends Piece {
 					//Otherwise spot is not destination
 					else {
 						//Return false is space is occupied (not Blank
-						if (!(board[this.getX()][i].getPlayer() == 2)) {
+						if ((board[this.getX()][i].getPlayer() != 2)) {
 							return false;
 						}
 					}
 				}
+			}
 		}
 		
 		return false;

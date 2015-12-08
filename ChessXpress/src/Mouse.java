@@ -7,8 +7,9 @@ public class Mouse {
 		this.y = 0;
 	}
 	public void setPos(double x, double y) {
-		this.x = x;
-		this.y = y;
+		//Switch to account for our system being a 2D array and coordinates being oppesite
+		this.x = y;
+		this.y = x;
 	}
 	//Return the square coordinates
 	public int getX() {
