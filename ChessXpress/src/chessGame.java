@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-@SuppressWarnings("unchecked")
 public class chessGame {
 		//Coordinates to highlight
 		private int xHi = 8; //Amount over
@@ -40,30 +39,18 @@ public class chessGame {
     	//Pieces
         //white
         private Image whitePawnReg = new Image("file:pic/wtpaw.gif");
-        private Image whitePawnHL = new Image("file:pic/wtpawHi.gif");
         private Image whiteBishopReg = new Image("file:pic/wtbsh.gif");
-        private Image whiteBishopHL = new Image("file:pic/wtbshHi.gif");
         private Image whiteCastleReg = new Image("file:pic/wtcas.gif");
-        private Image whiteCastleHL = new Image("file:pic/wtcasHi.gif");
         private Image whiteKnightReg = new Image("file:pic/wtkght.gif");
-        private Image whiteKnightHL = new Image("file:pic/wtkghtHi.gif");
         private Image whiteKingReg = new Image("file:pic/wtking.gif");
-        private Image whiteKingHL = new Image("file:pic/wtkingHi.gif");
         private Image whiteQueenReg = new Image("file:pic/wtque.gif");
-        private Image whiteQueenHL = new Image("file:pic/wtqueHi.gif");
         //black
         private Image blackPawnReg = new Image("file:pic/bkpaw.gif");
-        private Image blackPawnHL = new Image("file:pic/bkpawHi.gif");
         private Image blackBishopReg = new Image("file:pic/bkbsh.gif");
-        private Image blackBishopHL = new Image("file:pic/bkbshHi.gif");
         private Image blackCastleReg = new Image("file:pic/bkcas.gif");
-        private Image blackCastleHL = new Image("file:pic/bkcasHi.gif");
         private Image blackKnightReg = new Image("file:pic/bkkght.gif");
-        private Image blackKnightHL = new Image("file:pic/bkkghtHi.gif");
         private Image blackKingReg = new Image("file:pic/bkking.gif");
-        private Image blackKingHL = new Image("file:pic/bkkingHi.gif");
         private Image blackQueenReg = new Image("file:pic/bkque.gif");
-        private Image blackQueenHL = new Image("file:pic/bkqueHi.gif");
         
     	public chessGame(Mouse mouse, Pane root) {
     		//System.out.println("init");
@@ -172,9 +159,7 @@ public class chessGame {
     				turn = 1-turn;
     				selected = false;
     			}
-    				
-    				
-    				//this.turn = 1-this.turn;
+
     			
     			
     			//redisplay
@@ -186,93 +171,10 @@ public class chessGame {
     		//this.started = true;
     		display();
     		this.first = false;
-    		//Main game loop
-    		//Create board for first time
-    		//Variable to check for finished
-    		boolean done = false;
-    		//Which players turn it is. 0 is player 1, 1 is player 2
-    		int turn = player;
-    		//Check if player 1 is in check. 0 not check, 1 in check, 2 checkmate
-    		int check1 = 0;
-    		//Check if player 2 is in check. 0 not check, 1 in check, 2 checkmate
-    		int check2 = 0;
-    		
-    		//while (done == false) {
-    			//Call move, get new board
-    			//move(turn,check1,check2);
-    			/*
-    			//Check for check and checkmate
-    			//Check for player 1
-    			//Find player 1s king
-    			Piece player1King;
-    			for (int i=0; i<16; i++) {
-    				for (int j=0; j<16; j++) {
-    					if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 0)) {
-    						player1King = gameBoard[i][j];
-    					}
-    				}
-    			}
-    			//Check for check
-    			if (isCheck(player1King, gameBoard)) {
-    				//Check for checkmate
-    				if (isCheckmate(player1King, gameBoard)) {
-    					check1 = 2;
-    				}
-    				//Otherwise just check
-    				else {
-    					check1 = 1;
-    				}
-    			}
-    			//Otherwise not in check
-    			else {
-    				check1 = 0;
-    			}
-    			//Check for player 2
-    			//Find player 2s king
-    			Piece player2King;
-    			for (int i=0; i<16; i++) {
-    				for (int j=0; j<16; j++) {
-    					if ((gameBoard[i][j].getType() == PieceType.KING) && (gameBoard[i][j].getPlayer() == 1)) {
-    						player2King = gameBoard[i][j];
-    					}
-    				}
-    			}
-    			//Check for check
-    			if (isCheck(player2King, gameBoard)) {
-    				//Check for checkmate
-    				if (isCheckmate(player2King, gameBoard)) {
-    					check2 = 2;
-    				}
-    				//Otherwise just check
-    				else {
-    					check2 = 1;
-    				}
-    			}
-    			//Otherwise not in check
-    			else {
-    				check2 = 0;
-    			}
-    			*/
-    			//if (action) {
-    				//System.out.println("Clicked in main loop");
-    				//display(5,6);
-    			
-    				//display(this.mouse.getX(),this.mouse.getY());
-    				//action = false;
-    			
-    			//}
-    			//turn = 1- turn;
-    			
-    			//Redisplay
-    			
-    		//}
-
     	}
-    	//Display the board. Call this function to update the board
-    	//Takes in boolean first
     	
     	private void display() {
-    		System.out.println("display");
+    		//System.out.println("display");
     		//Remove all pieces from root pane after first iteration
     		//System.out.println(this.mouse.getX());
     		//System.out.println(this.mouse.getY());

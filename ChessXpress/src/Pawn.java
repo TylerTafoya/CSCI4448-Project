@@ -19,14 +19,26 @@ public class Pawn extends Piece {
 			}
 			//Pawns move forward by one, but can move forward by two on first move and attack diagonally
 			//Pawns can't jump over occupied spaces or capture on first move
-			if(destX == this.getX()+1 && destY == this.getY()){
+			if(destX == this.getX()+1 && destY == this.getY() && board[destX][destY].getPlayer() == 2){
 				return true;
 			}
+			//Check for first move 2 space jump
 			if(destX == this.getX()+2 && destY == this.getY()){
-				if (!hasMoved) {
+				if (!hasMoved && board[destX-1][destY].getPlayer() == 2 && board[destX][destY].getPlayer() == 2) {
 					return true;
 				}
 			}
+			//Check for diagonal attack, only down for player 1
+			if ((destX == this.getX()+1) && ((destY == this.getY()-1) || (destY == this.getY()+1))) {
+				//Check if the diagonal is an opponent
+				if (board[destX][destY].getPlayer() == 1){
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			
 			
 		}
 		//Otherwise is black piece, only move up
@@ -37,12 +49,23 @@ public class Pawn extends Piece {
 			}
 			//Pawns move forward by one, but can move forward by two on first move and attack diagonally
 			//Pawns can't jump over occupied spaces or capture on first move
-			if(destX == this.getX()-1 && destY == this.getY()){
+			if(destX == this.getX()-1 && destY == this.getY() && board[destX][destY].getPlayer() == 2){
 				return true;
 			}
+			//Check for first move 2 space jump
 			if(destX == this.getX()-2 && destY == this.getY()){
-				if (!hasMoved) {
+				if (!hasMoved && board[destX+1][destY].getPlayer() == 2 && board[destX][destY].getPlayer() == 2) {
 					return true;
+				}
+			}
+			//Check for diagonal attack, only up for player 2
+			if ((destX == this.getX()-1) && ((destY == this.getY()-1) || (destY == this.getY()+1))) {
+				//Check if the diagonal is an opponent
+				if (board[destX][destY].getPlayer() == 0){
+					return true;
+				}
+				else {
+					return false;
 				}
 			}
 		}
