@@ -11,8 +11,8 @@ import javafx.scene.text.Text;
 @SuppressWarnings("unchecked")
 public class chessGame {
 		//Coordinates to highlight
-		private int xHi = 0;
-		private int yHi = 0;
+		private int xHi = 0; //Amount over
+		private int yHi = 0; //Amount down
 		//If a piece was previously selected
 		private boolean selected = false;
 		//Which players turn it is
@@ -146,9 +146,13 @@ public class chessGame {
     	public void click() {
     		//System.out.println("Clicked");
     		//if (this.started) {
-    			this.xHi = mouse.getX();
-    			this.yHi = mouse.getY();
-    			this.turn = 1-this.turn;
+    			
+    			//Check if it is the current players piece
+    			//if (this.gameBoard[mouse.getX()][mouse.getY()].getPlayer() == turn) {
+    				this.xHi = mouse.getX();
+        			this.yHi = mouse.getY();
+    				this.turn = 1-this.turn;
+    			//}
     			//redisplay
     			display();
     		//}
@@ -274,7 +278,7 @@ public class chessGame {
     				//White square
                     if ( (row % 2) == (col % 2) ){
                     	//Check if this square is valid or selected, if so highlight
-                    	if ((row == this.yHi) && (col == this.xHi)){
+                    	if (((row == this.yHi) && (col == this.xHi)) || (this.gameBoard[this.yHi][this.xHi].isValid(this.gameBoard, row, col))){
                     		this.r[row][col].setFill(new ImagePattern(this.wtsquHL, 0, 0, 1, 1, true));
                     	}
                     	//Otherwise square is normal
@@ -286,7 +290,7 @@ public class chessGame {
                     //Black square
                     else{
                     	//Check if this square is valid or selected, if so highlight
-                    	if ((row == this.yHi) && (col == this.xHi)){
+                    	if (((row == this.yHi) && (col == this.xHi)) || this.gameBoard[this.yHi][this.xHi].isValid(this.gameBoard, row, col)){
                     		this.r[row][col].setFill(new ImagePattern(this.bksquHL, 0, 0, 1, 1, true));
                     	}
                     	//Otherwise square is normal

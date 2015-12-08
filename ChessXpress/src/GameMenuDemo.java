@@ -43,8 +43,8 @@ public class GameMenuDemo extends Application {
 		        //System.out.println(event.getSceneX());
 		        //System.out.println(event.getSceneY());
 		        mouse.setPos(event.getSceneX(), event.getSceneY());
-		        //System.out.println(mouse.getX());
-		        //System.out.println(mouse.getY());
+		        System.out.println(mouse.getX());
+		        System.out.println(mouse.getY());
 		        game.click();
 		    }
 		});
